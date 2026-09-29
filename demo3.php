@@ -2,9 +2,19 @@
 
 // PETICION A UNA API
 const API_URL = "https://www.whenisthenextmcufilm.com/api";
+#Inicializar una nueva sesion de cURL; ch = cURL handle
+$ch = curl_init(API_URL);
+//Indicar que queremos recibir el resultado de la peticion y no mostrarla en pantalla
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+/* Ejecutar la peticion 
+y guardamos el resultado
+*/
+$result = curl_exec($ch);
 
-$result = file_get_contents(API_URL); //si solo quieres hacer un GET de una API
+// una alternativa seria utilizar file_get_contents
+// $result = file_get_contents(API_URL); si solo quieres hacer un GET de una API
 $data = json_decode($result,true);
+curl_close($ch);
 
 // El var_dump se coloca dentro del <pre> <pre/> para ver las variables
 //var_dump($data);
